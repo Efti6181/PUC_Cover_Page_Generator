@@ -1,0 +1,189 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>University Index Page Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    @media print {
+        @page {
+            size: A4 portrait;
+            margin: 25.4mm; 
+            /* color : white */
+            /* background-color: white; */
+        }
+        /* Hide browser-generated content */
+        body::before, body::after,
+        header, footer {
+            display: none !important;
+            content: none !important;
+        }
+    }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="editor-panel">
+      <h2>Customization Panel</h2>
+      
+      <div class="form-group">
+        <label for="logo-upload">University Logo:</label>
+        <input type="file" id="logo-upload" accept="image/*" />
+      </div>
+      
+      <div class="form-group">
+        <label for="university-name">University Name:</label>
+        <input type="text" id="university-name" value="Premier University Chittagong" />
+      </div>
+      
+      <div class="form-group">
+        <label for="department-name">Department Name:</label>
+        <!-- <input type="text" id="department-name" value="Department of Computer Science & Engineering" /> -->
+        <select id="department-name" value="Your premier University Department name" class="select-input">
+            <option value="Department of Computer Science and Engineering" selected>Computer Science and Engineering</option>
+            <option value="Department of Electrical and Electronic Engineering">Electrical and Electronic Engineering</option>
+            <option value="Department of English Language & Literature">English Language & Literature</option>
+            <option value="Department of Business Administration">Business Administration</option>
+            <option value="Department of Law">Law</option>
+            <option value="Department of Economics">Economics</option>
+            <option value="Department of Fashion Design and Technology">Fashion Design and Technology</option>
+            <option value="Department of Mathematics">Mathematics</option>
+            <option value="Department of Architecture">Architecture</option>
+            <option value="Department of Sociology and Sustainable Development">Sociology and Sustainable Development</option>
+            <option value="Department of Public Health">Public Health</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="index-type">Index Type:</label>
+        <input type="text" id="index-type" value="Lab Report Index" />
+      </div>
+      
+      <div class="form-group">
+        <label for="course-code">Course Code:</label>
+        <input type="text" id="course-code" value="" />
+      </div>
+      
+      <div class="form-group">
+        <label for="course-title">Course Title:</label>
+        <input type="text" id="course-title" value="" />
+      </div>
+      
+      <div class="form-group">
+        <label>Text Styling:</label>
+        <div class="styling-options">
+          <select id="font-family">
+            <option value="Arial, sans-serif">Arial</option>
+            <option value="Times New Roman, serif">Times New Roman</option>
+            <option value="Calibri, sans-serif">Calibri</option>
+            <option value="Georgia, serif">Georgia</option>
+            <option value="Verdana, sans-serif">Verdana</option>
+          </select>
+          
+          <select id="font-size">
+            <option value="12px">12px</option>
+            <option value="14px">14px</option>
+            <option value="16px" selected>16px</option>
+            <option value="18px">18px</option>
+            <option value="20px">20px</option>
+            <option value="24px">24px</option>
+          </select>
+          
+          <input type="color" id="text-color" value="#000000" />
+          
+          <button id="bold-btn" class="style-btn">B</button>
+          <button id="underline-btn" class="style-btn">U</button>
+        </div>
+      </div>
+      
+      <h3>Student Information</h3>
+      <div class="form-group">
+        <label for="student-name">Name:</label>
+        <input type="text" id="student-name" value="" />
+      </div>
+      
+      <div class="form-group">
+        <label for="student-id">ID:</label>
+        <input type="text" id="student-id" value="" />
+      </div>
+      
+      <div class="form-group">
+        <label for="semester">Semester:</label>
+        <input type="text" id="semester" value="" />
+      </div>
+      
+      <div class="form-group">
+        <label for="section">Section:</label>
+        <input type="text" id="section" value="" />
+      </div>
+      
+      <h3>Experiment Table</h3>
+      <div id="experiments-container">
+        <div class="experiment-row">
+          <input type="text" class="experiment-no" placeholder="No." value="1" />
+          <input type="text" class="experiment-name" placeholder="Name of Experiment" value="Familiarization of the Digital Logic gates ICs, truth tables & Verification of Fundamental logic gates." />
+          <button class="remove-row">✕</button>
+        </div>
+      </div>
+      <button id="add-experiment">Add Experiment</button>
+      
+      <div class="action-buttons">
+        <button id="generate-btn">Generate & Print</button>
+      </div>
+    </div>
+    
+    <div class="preview-panel">
+      <div class="preview-container" id="preview-content">
+        <div class="university-header">
+          <img id="university-logo" src="logo.png" alt="University Logo" />
+          <h1 id="preview-university-name">Premier University Chittagong</h1>
+          <h2 id="preview-department-name">Department of Computer Science & Engineering</h2>
+          <h3 id="preview-index-type">Lab Report Index</h3>
+        </div>
+        
+        <div class="course-info">
+          <p><strong>Course Code: </strong><span id="preview-course-code"></span></p>
+          <p><strong>Course Title: </strong><span id="preview-course-title"></span></p>
+        </div>
+        
+        <div class="student-info">
+          <h3>Submitted By</h3>
+          <table id="student-table">
+            <tr>
+              <td><strong>Name:</strong></td>
+              <td><span id="preview-student-name"></span></td>
+              <td><strong>Semester:</strong></td>
+              <td><span id="preview-semester"> </span></td>
+            </tr>
+            <tr>
+              <td><strong>ID:</strong></td>
+              <td><span id="preview-student-id"></span></td>
+              <td><strong>Section:</strong></td>
+              <td><span id="preview-section"></span></td>
+            </tr>
+          </table>
+        </div>
+        
+        <div class="experiments-info">
+          <table id="experiments-table">
+            <thead>
+              <tr>
+                <th>Experiment No.</th>
+                <th>Name of Experiment</th>
+              </tr>
+            </thead>
+            <tbody id="experiments-tbody">
+              <!-- Experiments will be added here dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>

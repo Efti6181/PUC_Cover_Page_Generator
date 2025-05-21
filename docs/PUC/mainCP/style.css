@@ -1,0 +1,643 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color:  linear-gradient(to bottom, #000000, #434343);
+    background-color: rgb(8, 8, 8);
+    /* color: white; */
+    padding: 2rem;
+    line-height: 1.5;
+}
+
+.container {
+    background: linear-gradient(to bottom, #434343, #434343);
+    /* padding: 1.5rem; */
+    padding: 20px;
+    /* color:#000000; */
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+}
+
+.editor-section {
+    background: linear-gradient(to bottom, #000000, #434343);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    color: white;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.form-group {
+    background: linear-gradient(to bottom, #000000, #434343);
+    padding: 10px;
+
+    margin-bottom: 1rem;
+}
+
+
+label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.text-input,
+.select-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+}
+
+.text-input:disabled,
+.select-input:disabled,
+.color-input:disabled {
+    background-color: #f3f4f6;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.file-input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.customization-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.color-input {
+    width: 100%;
+    height: 40px;
+    padding: 0.25rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+}
+
+/* Text formatting toolbar */
+.text-formatting-toolbar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.format-btn {
+    min-width: 40px;
+    height: 40px;
+    background-color: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.format-btn:hover {
+    background-color: #f3f4f6;
+}
+
+.format-btn.active {
+    background-color: #e5e7eb;
+    border-color: #9ca3af;
+}
+
+.format-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.generate-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.generate-btn:hover {
+    background-color: #2563eb;
+}
+
+.preview-section {
+    /* background: white; */
+    color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    user-select: text;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo-container {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 1rem;
+}
+
+.logo-placeholder {
+    width: 100%;
+    height: 100%;
+    border: 2px dashed #d1d5db;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+}
+
+.logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Tables layout */
+.tables-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Table container with resizing */
+.table-container {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.tables-gap {
+    height: 1.5rem;
+}
+
+.table-resizer {
+    position: absolute;
+    top: 0;
+    right: -10px;
+    width: 10px;
+    height: 100%;
+    cursor: col-resize;
+    z-index: 10;
+}
+
+.form-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.form-table td {
+    border: 1px solid #d1d5db;
+    padding: 0.5rem; /* Reduced from 0.75rem */
+    position: relative;
+}
+
+.form-table td:first-child {
+    width: 33%;
+    font-weight: 500;
+}
+
+.table-input {
+    width: 100%;
+    padding: 0.25rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    resize: vertical;
+    min-height: 1.75rem; /* Reduced from 2rem */
+    overflow: hidden;
+}
+
+.editable-field {
+    min-height: 1.75rem; /* Reduced from 2rem */
+    padding: 0.25rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    outline: none;
+    width: 100%;
+}
+
+.editable-field:empty:before {
+    content: attr(data-placeholder);
+    color: #9ca3af;
+}
+
+.editable-field.print-mode {
+    border: none !important;
+    padding: 0 !important;
+}
+
+.date-input {
+    resize: none;
+    min-height: auto;
+    padding: 0.375rem;
+}
+
+.semester-select {
+    resize: none;
+    min-height: auto;
+    padding: 0.375rem;
+    background-color: white;
+}
+
+.delete-row {
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.form-table tr:hover .delete-row {
+    opacity: 1;
+}
+
+.delete-row:hover {
+    background: #dc2626;
+}
+
+/* Custom dropdown */
+.custom-dropdown {
+    background-color: white;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.dropdown-option {
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.dropdown-option:hover {
+    background-color: #f3f4f6;
+}
+
+/* Resizing styles */
+.resizing {
+    cursor: col-resize;
+    user-select: none;
+}
+
+/* Table customization controls */
+.table-customization {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.table-customization h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.range-control {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.range-control label {
+    width: 120px;
+    margin-bottom: 0;
+}
+
+.range-control input[type="range"] {
+    flex: 1;
+}
+
+.range-control .value {
+    width: 50px;
+    text-align: right;
+    font-size: 0.875rem;
+    color: #4b5563;
+}
+
+@media print {
+    /* Hide editor section */
+    .editor-section {
+        display: none;
+    }
+
+    /* Adjust container for print */
+    .container {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Adjust preview section for print */
+    .preview-section {
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        max-height: 100vh;
+        overflow: visible;
+        page-break-inside: avoid;
+        background: white !important;
+        color: #000000 !important;
+    }
+
+    /* Hide form controls */
+    .table-input,
+    .editable-field {
+        border: none !important;
+        padding: 0 !important;
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+    }
+    
+    /* Hide date picker and dropdown arrows */
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="date"]::-webkit-inner-spin-button,
+    select::-ms-expand,
+    select {
+        display: none !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+    }
+
+    /* Hide other UI elements */
+    .delete-row,
+    .table-resizer,
+    .custom-dropdown,
+    .dropdown-option {
+        display: none !important;
+    }
+
+    /* Set page size and margins - 1 inch = 25.4mm */
+    @page {
+        size: A4 portrait;
+        margin: 25.4mm;
+    }
+
+    /* Ensure content fits on one page */
+
+    @page {
+        size: A4 portrait;
+        margin: 25.4mm;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    @page :first {
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+    /* body {
+        margin: 0;
+        padding: 0;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
+    /* Scale content to fit on one page if needed */
+    /* .tables-wrapper {
+        max-height: 70vh;
+    } */
+
+    /* Clean print environment */
+    /* html {
+        height: 100%;
+    } */
+    
+    /* Hide any browser-generated content */
+    /* body::before,
+    body::after,
+    .preview-section::before,
+    .preview-section::after,
+    @page::first {
+        display: none !important;
+        content: none !important;
+    }  */
+/* } */
+
+
+.button-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Cyberpunk Button */
+  .generate-btn {
+    /* position: relative; */
+    /* padding: 5px; */
+    /* font-size: 20px; */
+    /* color: #ffeb3b; */
+    /* background-color: #1a1a1a; */
+    /* border: 2px solid #ffeb3b; */
+    /* border-radius: 5px; */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    cursor: pointer;
+    /* box-shadow:
+      0 0 10px #ffeb3b,
+      0 0 20px #ffeb3b,
+      0 0 40px #ffeb3b,
+      0 0 80px #ffeb3b,
+      inset 0 0 10px rgba(255, 235, 59, 0.5); */
+    transition: all 0.3s ease;
+    /* animation: glow-pulse 2s infinite alternate; */
+    /* overflow: hidden; */
+  }
+  
+  /* Glow Pulsation Animation */
+  /* @keyframes glow-pulse {
+    0% {
+      box-shadow:
+        0 0 10px #ffeb3b,
+        0 0 20px #ffeb3b,
+        0 0 40px #ffeb3b,
+        0 0 80px #ffeb3b,
+        inset 0 0 10px rgba(255, 235, 59, 0.5);
+    }
+    100% {
+      box-shadow:
+        0 0 20px #ffeb3b,
+        0 0 40px #ffeb3b,
+        0 0 80px #ffeb3b,
+        0 0 160px #ffeb3b,
+        inset 0 0 20px rgba(255, 235, 59, 0.5);
+    }
+  } */
+  
+  /* Hover Effect */
+  .generate-btn:hover {
+    transform: scale(1.05);
+    box-shadow:
+      0 0 2px #2107a1,
+      0 0 4px #2f07b3,
+      0 0 8px #1348d0,
+      0 0 16px #250d9d,
+      inset 0 0 20px rgba(255, 235, 59, 0.5);
+  }
+  
+  /* Click Effect */
+  .generate-btn:active {
+    transform: scale(0.95);
+  }
+  
+  /* Circuit Lines */
+  .circuit-lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+  
+  .circuit-lines::before,
+  .circuit-lines::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 30px;
+    background: #ffeb3b;
+    animation: flicker 1s infinite alternate;
+  }
+  
+  .circuit-lines::before {
+    top: -15px;
+    left: 10%;
+    box-shadow:
+      0 0 5px #ffeb3b,
+      0 0 10px #ffeb3b;
+  }
+  
+  .circuit-lines::after {
+    bottom: -15px;
+    right: 10%;
+    box-shadow:
+      0 0 5px #ffeb3b,
+      0 0 10px #ffeb3b;
+  }
+  
+  /* Flicker Animation */
+  @keyframes flicker {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.3;
+    }
+  }
+  
+  /* Neon Text Glow */
+  .generate-btn span {
+    position: relative;
+    z-index: 1;
+    text-shadow:
+      0 0 5px #ffeb3b,
+      0 0 10px #ffeb3b,
+      0 0 20px #ffeb3b;
+  }
+  
+  /* Futuristic Cable Effect */
+  .cable-effect {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+  
+  .cable-effect::before,
+  .cable-effect::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 50px;
+    background: #ffeb3b;
+    animation: cable-flicker 1.5s infinite alternate;
+  }
+  
+  .cable-effect::before {
+    top: -25px;
+    left: 20%;
+    box-shadow:
+      0 0 5px #ffeb3b,
+      0 0 10px #ffeb3b;
+  }
+  
+  .cable-effect::after {
+    bottom: -25px;
+    right: 20%;
+    box-shadow:
+      0 0 5px #ffeb3b,
+      0 0 10px #ffeb3b;
+  }
+  
+  /* Cable Flicker Animation */
+  @keyframes cable-flicker {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.2;
+    }
+  }
+  

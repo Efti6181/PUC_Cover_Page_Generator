@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <title>Cover Page Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 25.4mm; 
+                /* color : white */
+                /* background-color: white; */
+            }
+            /* Hide browser-generated content */
+            body::before, body::after,
+            header, footer {
+                display: none !important;
+                content: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Editor Section -->
+        <div class="editor-section">
+            <h2>Cover Page Customization</h2>
+            
+            <!-- Logo Upload -->
+            <div class="form-group">
+                <label>Update Logo</label>
+                <input type="file" accept="image/*" id="logoUpload" class="file-input">
+            </div>
+
+            <!-- Department Name -->
+            <div class="form-group">
+                <label>Department Name</label>
+                <!-- <input type="text" id="departmentName" value="Your premier University Department name" class="text-input"> -->
+                <select id="departmentName" value="Your premier University Department name" class="select-input">
+                    <option value="Department of Computer Science and Engineering" selected>Computer Science and Engineering</option>
+                    <option value="Department of Electrical and Electronic Engineering">Electrical and Electronic Engineering</option>
+                    <option value="Department of English Language & Literature">English Language & Literature</option>
+                    <option value="Department of Business Administration">Business Administration</option>
+                    <option value="Department of Law">Law</option>
+                    <option value="Department of Economics">Economics</option>
+                    <option value="Department of Fashion Design and Technology">Fashion Design and Technology</option>
+                    <option value="Department of Mathematics">Mathematics</option>
+                    <option value="Department of Architecture">Architecture</option>
+                    <option value="Department of Sociology and Sustainable Development">Sociology and Sustainable Development</option>
+                    <option value="Department of Public Health">Public Health</option>
+                </select>
+            </div>
+
+            <!-- Cover Page Type -->
+            <div class="form-group">
+                <label>Update Cover Page Type</label>
+                <input type="text" id="coverPageType" value="Lab Report" class="text-input">
+            </div>
+
+            <!-- Text Customization -->
+            <div class="customization-grid">
+                <div class="form-group">
+                    <label>Font Size</label>
+                    <select id="fontSize" class="select-input">
+                        <option value="12px">12px</option>
+                        <option value="14px">14px</option>
+                        <option value="16px" selected>16px</option>
+                        <option value="18px">18px</option>
+                        <option value="20px">20px</option>
+                        <option value="24px">24px</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Font Family</label>
+                    <select id="fontFamily" class="select-input">
+                        <option value="Arial" selected>Arial</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Georgia">Georgia</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Text Color</label>
+                <input type="color" id="textColor" value="#000000" class="color-input">
+            </div>
+
+            <div class="text-formatting-toolbar">
+                <button type="button" id="boldText" class="format-btn" title="Bold">B</button>
+                <button type="button" id="italicText" class="format-btn" title="Italic"><i>I</i></button>
+                <button type="button" id="underlineText" class="format-btn" title="Underline"><u>U</u></button>
+                <button type="button" id="superscriptText" class="format-btn" title="Superscript">X<sup>2</sup></button>
+                <button type="button" id="subscriptText" class="format-btn" title="Subscript">X<sub>2</sub></button>
+            </div>
+            
+            <!-- Table Customization -->
+            <div class="table-customization">
+                <h3>Table Customization</h3>
+                
+                <div class="range-control">
+                    <label>Row Height</label>
+                    <input type="range" id="rowHeightRange" min="20" max="60" value="32">
+                    <span class="value" id="rowHeightValue">32px</span>
+                </div>
+                
+                <div class="range-control">
+                    <label>Cell Padding</label>
+                    <input type="range" id="cellPaddingRange" min="2" max="16" value="8">
+                    <span class="value" id="cellPaddingValue">8px</span>
+                </div>
+                
+                <div class="range-control">
+                    <label>Table Width</label>
+                    <input type="range" id="tableWidthRange" min="50" max="100" value="100">
+                    <span class="value" id="tableWidthValue">100%</span>
+                </div>
+            </div>
+
+            <button id="generateBtn" class="generate-btn">Generate & Print</button>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="preview-section" id="previewSection">
+            <div class="header">
+                <div id="logoContainer" class="logo-container">
+                    <img src="logo.png">
+                    <!-- <div class="logo-placeholder">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                    </div> -->
+                </div>
+                <h1>Premier University Chittagong</h1>
+                <h3 id="deptNamePreview">Your premier University Department name</h3>
+                <p id="coverTypePreview">Lab Report</p>
+            </div>
+
+            <div class="tables-wrapper">
+                <!-- First Table -->
+                <div class="table-container">
+                    <div class="table-resizer"></div>
+                    <table class="form-table" id="firstTable">
+                        <tbody>
+                            <tr>
+                                <td>Experiment No</td>
+                                <td><div class="editable-field" contenteditable="true" data-placeholder="Enter value..."></div></td>
+                            </tr>
+                            <tr>
+                                <td>Experiment Name</td>
+                                <td><div class="editable-field" contenteditable="true" data-placeholder="Enter value..."></div></td>
+                            </tr>
+                            <tr>
+                                <td>Course Code</td>
+                                <td><div class="editable-field" contenteditable="true" data-placeholder="Enter value..."></div></td>
+                            </tr>
+                            <tr>
+                                <td>Course Title</td>
+                                <td><div class="editable-field" contenteditable="true" data-placeholder="Enter value..."></div></td>
+                            </tr>
+                            <tr>
+                                <td>Date of Performance</td>
+                                <td><input type="date" name="dateOfPerformance" class="table-input date-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Date of Submission</td>
+                                <td><input type="date" name="dateOfSubmission" class="table-input date-input"></td>
+                            </tr>
+                            <tr>
+                                <td>Submitted to</td>
+                                <td><div class="editable-field" contenteditable="true" data-placeholder="Enter value..."></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Gap between tables -->
+                <div class="tables-gap"></div>
+                <h4>Submitted By:</h4>
+
+                <!-- Second Table -->
+                <div class="table-container">
+                    <div class="table-resizer"></div>
+                    <table class="form-table" id="secondTable">
+                        <tbody>
+                            <tr>
+                                <td>Name</td>
+                                <td><div class="editable-field" contenteditable="true" data-placeholder="Enter value..."></div></td>
+                            </tr>
+                            <tr>
+                                <td>Student ID</td>
+                                <td><div class="editable-field" contenteditable="true" data-placeholder="Enter value..."></div></td>
+                            </tr>
+                            <tr>
+                                <td>Semester</td>
+                                <td>
+                                    <select name="semester" class="table-input semester-select">
+                                        <option value="">Select Semester</option>
+                                        <option value="First">1st</option>
+                                        <option value="Second">2nd</option>
+                                        <option value="Third">3rd</option>
+                                        <option value="Fourth">4th</option>
+                                        <option value="Fifth">5th</option>
+                                        <option value="Sixth">6th</option>
+                                        <option value="Seventh">7th</option>
+                                        <option value="Eighth">8th</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Section</td>
+                                <td><div class="editable-field" contenteditable="true" data-placeholder="Enter value..."></div></td>
+                            </tr>
+                            <tr>
+                                <td>Batch</td>
+                                <td><div class="editable-field" contenteditable="true" data-placeholder="Enter value..."></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
